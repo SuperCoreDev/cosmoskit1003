@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+.All{
+  text-align: center;
+  background: url(../public/img/bg.png);
+  background-color: #001432;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255/var(--tw-text-opacity));
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
+
+
+
+/* CoinFlip */
+.coin {
+  transform-style: preserve-3d;
+  display: flex;
+  height: 12em;
+  width: 12em;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center
+}
+
+.coin, .coin-shadow {
+  position: relative
+}
+
+.coin-shadow:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .2);
+  border-radius: 999px;
+  transition: all .2s ease;
+  z-index: 0
+}
+
+.coin-back, .coin-front {
+  transform-style: preserve-3d;
+  background: linear-gradient(to right, #c99a21, #c99a21, #eab52e);
+  border: 2px solid #c99a21;
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  transition-property: all;
+  transition-duration: .15s;
+  transition-duration: 1.5s;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1)
+}
+
+.coin-front {
+  transform: translateZ(.8em)
+}
+
+.coin-back {
+  transform: translateZ(-.8em) rotateY(180deg)
+}
+
+.coin-back:before, .coin-front:before {
+  content: "";
+  border-radius: 100%;
+  width: 100%;
+  border: 2px solid #eab52e;
+  transform: translateZ(-1px);
+  transform-style: preserve-3d
+}
+
+.coin-back:before, .coin-front:before, .coin-middle {
+  position: absolute;
+  height: 100%;
+  background: #eab52e;
+  background-image: repeating-linear-gradient(transparent, transparent 7px, #c99a21 7px, #c99a21 10px)
+}
+
+.coin-middle {
+  width: 1.5em;
+  transform: rotateY(90deg);
+  border-top: 4px solid #eab52e;
+  border-bottom: 4px solid #eab52e;
+  /* animation: idle 2s ease infinite; */
+  transform-style: preserve-3d
+}
+
+.depth-back, .depth-front {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  border: 3px solid var(--darkCoin);
+  background: linear-gradient(to left, #c99a21, #eab52e);
+  transform-style: preserve-3d
+}
+
+.depth-back img, .depth-front img {
+  width: 100%
+}
+
+.depth-back, .depth-front {
+  transform: translateZ(1px)
+}
+
+/* Dice */
+.scene {
+  width: 200px;
+  height: 200px;
+  margin: 30px;
+  perspective: 1000px;
+}
+
+.cube {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.cube>div {
+  box-sizing: content-box;
+  border-radius: 8px;
+  border: 5px solid #29192c;
+}
+.cube__face--front {
+  transform: rotateY(0deg) translateZ(100px);
+  -webkit-transform: rotateY(0deg) translateZ(100px);
+  -moz-transform: rotateY(0deg) translateZ(100px);
+  -ms-transform: rotateY(0deg) translateZ(100px);
+  -o-transform: rotateY(0deg) translateZ(100px);
+}
+.cube__face--back {
+  transform: rotateY(180deg) translateZ(100px);
+  -webkit-transform: rotateY(180deg) translateZ(100px);
+  -moz-transform: rotateY(180deg) translateZ(100px);
+  -ms-transform: rotateY(180deg) translateZ(100px);
+  -o-transform: rotateY(180deg) translateZ(100px);
+}
+.cube__face--right {
+  transform: rotateY(90deg) translateZ(100px);
+  -webkit-transform: rotateY(90deg) translateZ(100px);
+  -moz-transform: rotateY(90deg) translateZ(100px);
+  -ms-transform: rotateY(90deg) translateZ(100px);
+  -o-transform: rotateY(90deg) translateZ(100px);
+}
+.cube__face--left {
+  transform: rotateY(-90deg) translateZ(100px);
+  -webkit-transform: rotateY(-90deg) translateZ(100px);
+  -moz-transform: rotateY(-90deg) translateZ(100px);
+  -ms-transform: rotateY(-90deg) translateZ(100px);
+  -o-transform: rotateY(-90deg) translateZ(100px);
+}
+.cube__face--top {
+  transform: rotateX(90deg) translateZ(100px);
+  -webkit-transform: rotateX(90deg) translateZ(100px);
+  -moz-transform: rotateX(90deg) translateZ(100px);
+  -ms-transform: rotateX(90deg) translateZ(100px);
+  -o-transform: rotateX(90deg) translateZ(100px);
+}
+.cube__face--bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+  -webkit-transform: rotateX(-90deg) translateZ(100px);
+  -moz-transform: rotateX(-90deg) translateZ(100px);
+  -ms-transform: rotateX(-90deg) translateZ(100px);
+  -o-transform: rotateX(-90deg) translateZ(100px);
+}
+.cube__face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+  font-size: 40px;
+  font-weight: 700;
+  color: #eab52e;
+  border-radius: 8px;
+  text-align: center;
+  opacity: 1;
+  background: #29192c;
+}
+
+.front .dot1 {
+  top: 80px;
+  left: 80px;
+}
+.back .dot1 {
+  top: 45px;
+  left: 45px;
+}
+.back .dot2 {
+  top: 125px;
+  left: 125px;
+}
+.right .dot1 {
+  top: 45px;
+  left: 45px;
+}
+.right .dot2 {
+  top: 85px;
+  left: 85px;
+}
+.right .dot3 {
+  top: 125px;
+  left: 125px;
+}
+.left .dot1 {
+  top: 45px;
+  left: 45px;
+}
+.left .dot2 {
+  top: 45px;
+  left: 125px;
+}
+.left .dot3 {
+  top: 125px;
+  left: 45px;
+}
+.left .dot4 {
+  top: 125px;
+  left: 125px;
+}
+.top .dot1 {
+  top: 40px;
+  left: 35px;
+}
+.top .dot2 {
+  top: 40px;
+  left: 125px;
+}
+.top .dot3 {
+  top: 80px;
+  left: 80px;
+}
+.top .dot4 {
+  top: 125px;
+  left: 35px;
+}
+.top .dot5 {
+  top: 125px;
+  left: 125px;
+}
+.bottom .dot1 {
+  top: 45px;
+  left: 30px;
+}
+.bottom .dot2 {
+  top: 45px;
+  left: 85px;
+}
+.bottom .dot3 {
+  top: 45px;
+  left: 140px;
+}
+.bottom .dot4 {
+  top: 125px;
+  left: 30px;
+}
+.bottom .dot5 {
+  top: 125px;
+  left: 85px;
+}
+.bottom .dot6 {
+  top: 125px;
+  left: 140px;
+}
+.dot {
+  display: block;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background: #eab52e;
+  border-radius: 20px;
+}
+
